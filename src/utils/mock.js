@@ -6,3 +6,4 @@ export const generateMockProduct = () => ({
   price: Number(faker.commerce.price()),
   stock: faker.number.int({ min: 1, max: 100 })
 });
+

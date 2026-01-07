@@ -1,4 +1,6 @@
 import { Router } from "express";
+import { generateMockProduct } from "../utils/mock.js";
+import { ProductModel } from "../models/product-model.js";
 import {
   getProducts,
   createProduct,
@@ -7,8 +9,19 @@ import {
 
 const router = Router();
 
-router.get("/", getProducts);
-router.post("/", createProduct);
+router.get("/performance", async (req, res) => {
+  const start = Date.now();
+  
+  const products = await ProductModel.find();
+  
+  const end = Date.now();
+  
+  res.json({
+    total: products.length,
+    timeMs: end - start
+  });
+});
+
 
 // 🔹 MOCKING
 router.get("/mock", (req, res) => {
@@ -16,6 +29,8 @@ router.get("/mock", (req, res) => {
   res.json(products);
 });
 
+router.get("/", getProducts);
+router.post("/", createProduct);
 router.get("/:id", getProductById);
 
 export default router;

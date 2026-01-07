@@ -1,8 +1,10 @@
 import { ProductModel } from "../models/product-model.js";
 import { CustomError } from "../utils/customError.js";
 
+
 export const getProducts = async (req, res, next) => {
   try {
+    req.logger.info("Obteniendo productos");
     const products = await ProductModel.find();
     res.json(products);
   } catch (error) {
