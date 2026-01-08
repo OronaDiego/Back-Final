@@ -28,7 +28,8 @@ docker compose up --build
 
 
 ### Detener contenedores
-docker compose down o ctrl + c
+docker compose down o ctrl + c 
+ ```
 
 
 ## La Api queda disponible en 
